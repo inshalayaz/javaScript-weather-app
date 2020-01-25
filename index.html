@@ -14,26 +14,26 @@
 </div>
     <script>
             
-            document.getElementById('my-btn').onclick = ()=>{
+            document.getElementById('my-btn').onclick = async ()=>{
                 let city = document.getElementById('city').value;
-                fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=cbfaa11b78f53b07c0311f9b23a5e011`).then(data=>{
-                    return data.json()
-                }).then(data2=>{
-                    document.getElementById('info').innerHTML = `
-                <ul>
-                <li>city:${data2.name}</li>
-                <li>Temp:${data2.main.temp}</li>
-                <li>desc:${data2.weather[0].description}</li>
-                </ul>
+              var data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=cbfaa11b78f53b07c0311f9b23a5e011`)
 
-                `
+              var data2 = await data.json();
+                // console.log(data2)
+                 document.getElementById('info').innerHTML = `
+                 <ul>
+                 <li>city:${data2.name}</li>
+                 <li>Temp:${data2.main.temp}</li>
+                 <li>desc:${data2.weather[0].description}</li>
+                 </ul>
+                 `
 
-                })
+                }
 
                
 
 
-            }
+            
                 </script>
 
 
